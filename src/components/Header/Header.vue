@@ -4,8 +4,6 @@
     <router-link v-for="item in items" :key="item.link" :exact='item.exact' :to="{name:item.name}">
     <span>{{item.title}}</span>
     </router-link>
-    <Logon></Logon>
-    <Login></Login>
   </div>
 </template>
 
