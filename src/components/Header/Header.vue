@@ -1,52 +1,42 @@
 <template>
   <div class="header-container">
-    <Avatar url="https://img0.baidu.com/it/u=3258727808,3216045793&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=1044"></Avatar>
-    <router-link v-for="item in items" :key="item.link" :exact='item.exact' :to="{name:item.name}">
-    <span>{{item.title}}</span>
-    </router-link>
+    <el-menu
+      default-active="/"
+      mode="horizontal"
+      :router="true"
+      style="padding-left: 10px"
+    >
+      <Banner />
+
+      <el-menu-item index="/">处理中心</el-menu-item>
+      <el-menu-item index="/post">处理中心</el-menu-item>
+      <el-menu-item index="/course">消息中心</el-menu-item>
+      <el-menu-item index="/about">订单管理</el-menu-item>
+    </el-menu>
   </div>
 </template>
 
 <script>
 import Avatar from "./Avatar";
+import Banner from "./Banner";
 export default {
-    components:{
-        Avatar,
-
-    },
-    data(){
-        return {
-            items:[
-                {
-                    name: "Home",
-                    title: "首页",
-                    exact: true,
-                },
-                {
-                    name:'Post',
-                    title:'岗位',
-                    exact:true,
-                },
-                {
-                    name:"Course",
-                    title:'课程',
-                    exact:true,
-                },
-                {
-                    name:'About',
-                    title:'个人',
-                    exact:true,
-                }
-            ]
-        }
-    }
-}
+  components: {
+    Avatar,
+    Banner,
+  },
+  data() {
+    return {};
+  },
+};
 </script>
 
 <style scoped>
 .header-container {
-    width: 100%;
-    height: 70px;
-    border: 1px solid ;
+  width: 100%;
+  height: 70px;
+}
+.el-menu--horizontal>.el-menu-item {
+    line-height: 70px;
+    margin:3px
 }
 </style>
