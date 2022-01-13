@@ -1,7 +1,6 @@
 import axios from 'axios'
 import store from '../store'
 import router from '../router/index.js'
-import {ElMessage} from "element-plus";
 
 const instance = axios.create({
     baseURL: 'http://localhost:8989/gwhx/',
@@ -40,10 +39,6 @@ instance.interceptors.response.use(function (response) {
     // router.push('/login').then(r => {
     //
     // });
-    ElMessage.error({
-        message: error.message,
-        duration: 1000
-    })
     return Promise.reject(error);
 });
 

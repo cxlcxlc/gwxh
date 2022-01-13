@@ -4,7 +4,7 @@
       <el-header style="padding:0px">
         <Header/>
         </el-header>
-      <el-main style="padding:0px">
+      <el-main style="padding:0px;height: 700px;width: 100%">
         <router-view />
         </el-main>
       <el-footer style="padding:0px">Footer</el-footer>
@@ -20,5 +20,13 @@ export default {
 };
 </script>
 <style>
-
+*{
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Hiragino Sans GB';
+  box-sizing: border-box;
+}
+.el-form-item .sign-input{
+  width: 270px;
+}
 </style>
