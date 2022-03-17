@@ -1,27 +1,32 @@
 import axios from 'axios'
 import store from '../store'
 import router from '../router/index.js'
+import { Message } from 'element-ui';
 
 const instance = axios.create({
     baseURL: 'http://localhost:8989/gwhx/',
-    timeout:5000
+    timeout:5000,
 });
 
+function parseToken(token) {
+    let strings = token.split(".");
+    return JSON.parse(decodeURIComponent(escape(window.atob(strings[1].replace(/-/g, "+").replace(/_/g, "/")))))
+}
 // 添加请求拦截器
 instance.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么
     config.headers["Content-Type"] = "application/json;charset=utf-8";
-    // if (config.url == 'users/login') {
-    //     return config;
-    // }
-    // if(localStorage.getItem("user") == null){
-    //     router.push('/login').then(r => {
-    //         ElMessage.error('登陆失效');
-    //     });
-    // }else {
-    //     config.headers["token"] = JSON.parse(localStorage.getItem("user")).user.userId;
-    // }
-    return config;
+    let token = localStorage.getItem('token');
+    if (config.url.startsWith("users")) return config;
+    if (token === null || token === undefined) {
+        Message.error('请登陆');
+    }else {
+        if (token != null) {
+            config.headers["token"] = token;
+            return config;
+        }
+    }
+
 }, function (error) {
     // 对请求错误做些什么
     return Promise.reject(error);
@@ -36,9 +41,11 @@ instance.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
     // 对响应错误做点什么
-    // router.push('/login').then(r => {
-    //
-    // });
+    Message.error('登陆失效,请重新登陆')
+    localStorage.removeItem('token');
+    router.push('/').then(r => {
+    });
+    location.reload();
     return Promise.reject(error);
 });
 

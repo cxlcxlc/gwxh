@@ -5,6 +5,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    isLogin: localStorage.getItem('token') !== null,
+    user: {
+      name: 'no data'
+    }
   },
   mutations: {
   },

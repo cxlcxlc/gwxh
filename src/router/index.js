@@ -4,6 +4,8 @@ import Home from '../views/Home.vue';
 import Course from '../views/Course.vue';
 import Post from '../views/Post.vue';
 import About from '../views/About.vue';
+import WordCharts from "../components/WordCharts";
+import TreeCharts from "../components/TreeCharts";
 
 
 Vue.use(VueRouter)
@@ -17,18 +19,29 @@ const routes = [{
         path: '/post',
         name: 'Post',
         component: Post,
+        children:[
+            {
+                path: 'word/:id',
+                name: 'Word',
+                component: WordCharts,
+            }
+        ]
     },
     {
         path: '/course',
         name: 'Course',
-        component: Course
+        component: Course,
+        children:[
+            {
+                path: 'tree/:id',
+                name: 'TreeCharts',
+                component: TreeCharts,
+            }
+        ]
     },
     {
         path: '/about',
         name: 'About',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
         component: About,
     },
 

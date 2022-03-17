@@ -2,21 +2,14 @@
   <div>
     <el-image
         class="banner"
-        :src="url"
+        src="banner.png"
         fit="cover"
     ></el-image>
   </div>
 </template>
 <script>
 export default {
-  data() {
-    return {
-      url: "banner.png",
-    };
-  },
-  methods: {
 
-  }
 };
 </script>
 
